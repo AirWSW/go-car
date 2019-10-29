@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Raspberry Pi</title>
+  </head>
+  <body onload="createImageLayer();">
+    <script type="text/javascript" src="mjpeg.js"></script>
+    <script type="text/javascript" src="canvas.js"></script>
+
+    <div>
+      <canvas id="canvas" style="position:absolute;"></canvas>
+      <img
+        src="http://192.168.123.162:8081/?action=stream"
+        width="640px"
+        height="480px"
+      />
+    </div>
+
+    <div id="dis"></div>
+    <div id="text"></div>
+  </body>
+</html>
