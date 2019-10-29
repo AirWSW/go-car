@@ -65,7 +65,7 @@ func Cam(s *Speed) {
 				sumA = sumA + i
 				countA++
 			}
-			if matBytes[640 * 250 + i] == 255 {
+			if matBytes[640 * 200 + i] == 255 {
 				sumB = sumB + i
 				countB++
 			}
@@ -83,9 +83,9 @@ func Cam(s *Speed) {
 		if countC == 0 {
 			countC = 1
 		}
-		if sumA/countA > sumB/countB + 10 {
+		if sumA/countA > sumC/countC + 10 {
 			s.SetSpeed(200, 0, 100, 0)
-		} else if sumA/countA < sumB/countB - 10 {
+		} else if sumA/countA < sumC/countC - 10 {
 			s.SetSpeed(100, 0, 200, 0)
 		} else {
 			s.SetSpeed(120, 0, 120, 0)
@@ -101,7 +101,7 @@ func Cam(s *Speed) {
 		elapsed := time.Since(t1)
 		
 		log.Println("Got: ", url, ", elapsed: ", elapsed, fmt.Sprintf(", %d end", count))
-		go writer("CONTOURS", []byte(fmt.Sprintf("[[(%d,150) (%d,250) (%d,250)]]", sumA/countA, sumB/countB, sumC/countC)))
+		go writer("CONTOURS", []byte(fmt.Sprintf("[[(%d,150) (%d,200) (%d,250)]]", sumA/countA, sumB/countB, sumC/countC)))
 		go writer("CONTOURS", []byte(fmt.Sprintln(approxs)))
 		go writer("CAMINFO", []byte(fmt.Sprintln("Got: ", url, ", elapsed: ", elapsed, fmt.Sprintf(", %d end", count))))
 		count++
